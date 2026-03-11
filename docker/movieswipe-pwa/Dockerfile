@@ -45,6 +45,14 @@ COPY docker/movieswipe-pwa/nginx.conf /etc/nginx/nginx.conf
 # Copy built application from builder stage
 COPY --from=builder /app/dist .
 
+# Copy scripts and dependencies for data synchronization
+COPY --from=builder /app/scripts /app/scripts
+COPY --from=builder /app/package*.json /app/
+COPY --from=builder /app/node_modules /app/node_modules
+
+# Create data directory for sync operations
+RUN mkdir -p /app/public/data
+
 # Create non-root user for security
 # This prevents the container from running as root
 RUN addgroup -g 1000 appuser && \
@@ -56,7 +64,8 @@ RUN chown -R appuser:appuser /usr/share/nginx/html && \
     chown -R appuser:appuser /var/log/nginx && \
     chown -R appuser:appuser /etc/nginx/conf.d && \
     touch /var/run/nginx.pid && \
-    chown -R appuser:appuser /var/run/nginx.pid
+    chown -R appuser:appuser /var/run/nginx.pid && \
+    chown -R appuser:appuser /app
 
 # Copy entrypoint script and set permissions (before switching user)
 COPY docker/movieswipe-pwa/entrypoint.sh /entrypoint.sh
