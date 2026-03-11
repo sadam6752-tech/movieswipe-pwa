@@ -22,40 +22,6 @@ Progressive Web Application для выбора фильмов через инт
 - **React Swipeable** - свайп-жесты
 - **Vite** - сборка и разработка
 
-## 📦 Установка и запуск
-
-```bash
-# Установка зависимостей
-npm install
-
-# Запуск в режиме разработки
-npm run dev
-
-# Сборка для продакшена
-npm run build
-
-# Предпросмотр продакшен-сборки
-npm run preview
-```
-
-## 🌐 Деплой на реальный сервер
-
-### Быстрый старт (5 минут)
-👉 **[DEPLOY_QUICK.md](./DEPLOY_QUICK.md)** - Деплой на Vercel за 5 минут
-
-### Полное руководство
-👉 **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Все варианты деплоя (Vercel, Netlify, VPS, GitHub Pages)
-
-### Варианты хостинга:
-- **Vercel** - Рекомендуется (бесплатно, автоматический HTTPS, CDN)
-- **Netlify** - Альтернатива Vercel (тоже бесплатно)
-- **GitHub Pages** - Простой деплой из GitHub
-- **VPS** - Полный контроль (DigitalOcean, Hetzner)
-
-```bash
-# Генерация базы фильмов (требуется TMDB API ключ)
-TMDB_API_KEY=your_key npm run generate:base
-```
 
 # Генерация базы фильмов (требуется TMDB API ключ)
 TMDB_API_KEY=your_key npm run generate:base
@@ -68,34 +34,12 @@ npm run build
 
 # Предпросмотр продакшен-сборки
 npm run preview
-```
 
-### Генерация базы фильмов
-
-Приложение поддерживает два способа загрузки фильмов:
-
-#### 1. Предустановленные файлы по жанрам (рекомендуется)
-
-Генерируйте JSON файлы с фильмами из TMDB API:
-
-```bash
-# Только базовый файл (100 фильмов, ~30 сек)
-TMDB_API_KEY=your_key npm run generate:base
-
-# Все жанры (8000+ фильмов, ~40-50 мин)
-TMDB_API_KEY=your_key npm run generate:all
-
-# Конкретный жанр
-TMDB_API_KEY=your_key node scripts/generate-genre-files.js --genre=comedy
-```
-
-Подробнее: [QUICK_START.md](./QUICK_START.md)
 
 #### 2. Динамическая загрузка через TMDB API
 
 Пользователи могут добавить свой API ключ в настройках и загружать фильмы динамически.
 
-Подробнее: [TMDB_GUIDE.md](./TMDB_GUIDE.md)
 
 ## 🎨 Особенности
 
@@ -243,18 +187,6 @@ node scripts/poiskkino-sync.cjs --reset
 ### Лимиты ПоискКино API
 
 - Бесплатный план: **200 запросов в сутки**
-- Фильмов за запрос: до 250
-- Максимум в день: ~50,000 фильмов
-- Сброс лимита: каждый день в 00:00 UTC
-
-### Автоматизация (cron)
-
-```bash
-# Добавить в crontab для ежедневной синхронизации
-0 3 * * * cd /path/to/project/scripts && node poiskkino-sync.cjs --api-key YOUR_KEY >> sync.log 2>&1
-```
-
-**Подробнее:** [POISKKINO_GUIDE.md](./POISKKINO_GUIDE.md)
 
 ## 📊 Данные
 
@@ -272,30 +204,6 @@ node scripts/poiskkino-sync.cjs --reset
 - Фэнтези (Гарри Поттер, Властелин колец, Унесённые призраками)
 - И многое другое!
 
-## 🛠️ Разработка
-
-### Добавление новых фильмов
-
-Отредактируйте `public/data/movies.json`:
-
-```json
-{
-  "id": "unique-id",
-  "title": "Название",
-  "originalTitle": "Original Title",
-  "year": 2024,
-  "description": "Описание...",
-  "genres": ["drama", "thriller"],
-  "moods": ["philosophical", "adrenaline"],
-  "rating": 8.5,
-  "duration": 120,
-  "director": "Режиссер",
-  "cast": ["Актер 1", "Актер 2"],
-  "poster": "https://...",
-  "backdrop": "https://...",
-  "language": "ru"
-}
-```
 
 ### Доступные жанры (17)
 comedy, drama, romance, thriller, detective, sci-fi, fantasy, horror, action, adventure, family, animation, biography, historical, musical, documentary, war
