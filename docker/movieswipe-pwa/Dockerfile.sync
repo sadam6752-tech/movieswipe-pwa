@@ -31,7 +31,6 @@ RUN mkdir -p ./public/data
 # Set environment variables (can be overridden at runtime)
 ENV NODE_ENV=production
 
-# Default command - start bash shell for interactive use
-# Can be overridden to run specific scripts:
-# docker run movieswipe-pwa-sync node scripts/poiskkino-sync.cjs
-CMD ["/bin/bash"]
+# Default command - start shell for interactive use
+# Alpine uses sh, not bash
+CMD ["/bin/sh"]
