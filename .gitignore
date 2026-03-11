@@ -1,0 +1,6 @@
+*
+!.github/
+!.github/workflows/
+!docker/
+!movieswipe-pwa/
+!.gitignore
