@@ -28,9 +28,15 @@ COPY movieswipe-pwa/public/data ./public/data
 # Create data directory if it doesn't exist
 RUN mkdir -p ./public/data
 
+# Copy entrypoint script
+COPY docker/movieswipe-pwa/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Set environment variables (can be overridden at runtime)
 ENV NODE_ENV=production
 
-# Default command - start shell for interactive use
-# Alpine uses sh, not bash
-CMD ["/bin/sh"]
+# Use entrypoint script for flexible command execution
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Default command - start interactive shell if no command provided
+CMD []
