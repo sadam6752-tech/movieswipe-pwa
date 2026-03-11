@@ -1,0 +1,132 @@
+.favorite-item {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.favorite-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.favorite-item-poster {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px;
+  height: 120px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+.favorite-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favorite-item-rating {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.favorite-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.favorite-item-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.favorite-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.favorite-item-year {
+  font-weight: 500;
+}
+
+.favorite-item-separator {
+  color: var(--color-text-tertiary);
+}
+
+.favorite-item-genre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.favorite-item-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 1;
+}
+
+.favorite-item-remove:hover {
+  background: rgba(220, 38, 38, 0.9);
+  transform: scale(1.1);
+}
+
+.favorite-item-remove:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 767px) {
+  .favorite-item {
+    padding: 0.75rem;
+  }
+
+  .favorite-item-poster {
+    width: 60px;
+    height: 90px;
+  }
+
+  .favorite-item-title {
+    font-size: 0.875rem;
+  }
+
+  .favorite-item-meta {
+    font-size: 0.75rem;
+  }
+}

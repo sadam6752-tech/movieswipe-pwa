@@ -1,0 +1,85 @@
+# ============================================================================
+# Docker Compose Configuration for movieswipe-pwa
+# ============================================================================
+# This file defines the Docker Compose setup for local development and testing.
+# Use this for quick local testing without manual Docker commands.
+# ============================================================================
+
+version: '3.8'
+
+services:
+  # ========================================================================
+  # movieswipe-pwa Service
+  # ========================================================================
+  movieswipe-pwa:
+    # Build from local Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Container name for easy reference
+    container_name: movieswipe-pwa-dev
+    
+    # Port mapping: host:container
+    ports:
+      - "3000:3000"
+    
+    # Environment variables
+    environment:
+      # Node environment
+      NODE_ENV: production
+      
+      # Optional: Nginx configuration
+      # NGINX_WORKER_PROCESSES: auto
+      # NGINX_WORKER_CONNECTIONS: 1024
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    
+    # Resource limits (optional)
+    # Uncomment to enable resource limits
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 512M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 256M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Labels for identification
+    labels:
+      - "com.movieswipe.description=MovieSwipe PWA Application"
+      - "com.movieswipe.version=1.0.0"
+
+# ============================================================================
+# Networks
+# ============================================================================
+# Define custom network for service communication
+networks:
+  default:
+    name: movieswipe-network
+    driver: bridge
+
+# ============================================================================
+# Volumes (optional)
+# ============================================================================
+# Define volumes for persistent data if needed
+# volumes:
+#   movieswipe-data:
+#     driver: local

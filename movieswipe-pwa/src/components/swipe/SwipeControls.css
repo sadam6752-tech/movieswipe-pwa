@@ -1,0 +1,144 @@
+.swipe-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.swipe-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-family);
+  /* Touch target size */
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.swipe-control:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.swipe-control:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.swipe-control:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.swipe-control--like {
+  background-color: var(--color-accent-success);
+  color: white;
+}
+
+.swipe-control--like:hover:not(:disabled) {
+  background-color: #7dd3c0;
+}
+
+.swipe-control--dislike {
+  background-color: var(--color-accent-primary);
+  color: white;
+}
+
+.swipe-control--dislike:hover:not(:disabled) {
+  background-color: #ff8585;
+}
+
+.swipe-control--undo {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-bg-tertiary);
+}
+
+.swipe-control--undo:hover:not(:disabled) {
+  background-color: var(--color-border);
+}
+
+.swipe-control-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.swipe-control--undo .swipe-control-icon {
+  font-size: 24px;
+}
+
+.swipe-control-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Mobile optimization */
+@media (max-width: 767px) {
+  .swipe-controls {
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+  
+  .swipe-control {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .swipe-control--undo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .swipe-control-icon {
+    font-size: 24px;
+  }
+  
+  .swipe-control--undo .swipe-control-icon {
+    font-size: 20px;
+  }
+  
+  .swipe-control-label {
+    font-size: 10px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .swipe-controls {
+    margin-top: var(--spacing-xl);
+  }
+  
+  .swipe-control {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .swipe-control--undo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .swipe-control-icon {
+    font-size: 32px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .swipe-controls {
+    margin-top: var(--spacing-2xl);
+  }
+}

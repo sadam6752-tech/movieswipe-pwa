@@ -1,0 +1,79 @@
+# ============================================================================
+# .dockerignore - Exclude files from Docker build context
+# ============================================================================
+# This file specifies which files and directories should be excluded
+# from the Docker build context, reducing build time and image size.
+# ============================================================================
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Node.js
+node_modules
+npm-debug.log
+npm-error.log
+yarn-error.log
+.npm
+.yarn
+
+# IDE and Editor
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+.env.*.local
+
+# Build artifacts
+build
+dist
+.next
+out
+
+# Testing
+coverage
+.nyc_output
+*.lcov
+
+# Documentation
+docs
+README.md
+CHANGELOG.md
+LICENSE
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# Docker (keep nginx.conf and scripts)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Development
+.env
+.env.development
+.env.test
+.env.production
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Docker documentation (exclude docs but keep config files)
+DOCKER_*.md
+DESIGN_SUMMARY.md
+IMPLEMENTATION_*.md
+CONFIGURATION_EXAMPLES.md
+README_DOCKER_HUB.md

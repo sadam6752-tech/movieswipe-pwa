@@ -1,0 +1,117 @@
+# ============================================================================
+# GitHub Actions Workflow: Docker Publish
+# ============================================================================
+# This workflow automatically builds and publishes the Docker image
+# to Docker Hub when a release is created.
+# ============================================================================
+
+name: Docker Publish
+
+# Trigger on release creation
+on:
+  release:
+    types: [created]
+
+# Environment variables
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: movieswipe-pwa
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    # Permissions for GitHub Actions
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      # ====================================================================
+      # Step 1: Checkout Code
+      # ====================================================================
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # ====================================================================
+      # Step 2: Set up Docker Buildx
+      # ====================================================================
+      # Buildx enables multi-architecture builds
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      # ====================================================================
+      # Step 3: Login to Docker Hub
+      # ====================================================================
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      # ====================================================================
+      # Step 4: Extract Metadata
+      # ====================================================================
+      # Extract version from release tag
+      - name: Extract metadata
+        id: meta
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tags=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${VERSION},${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_OUTPUT
+      
+      # ====================================================================
+      # Step 5: Build and Push Image
+      # ====================================================================
+      # Build for multiple architectures and push to Docker Hub
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          # Build context
+          context: ./docker/movieswipe-pwa
+          
+          # Target platforms (architectures)
+          platforms: linux/amd64,linux/arm64
+          
+          # Push to registry
+          push: true
+          
+          # Image tags
+          tags: ${{ steps.meta.outputs.tags }}
+          
+          # Build cache
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
+          
+          # Build arguments
+          build-args: |
+            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            VCS_REF=${{ github.sha }}
+            VERSION=${{ steps.meta.outputs.version }}
+      
+      # ====================================================================
+      # Step 6: Verify Image
+      # ====================================================================
+      - name: Verify image
+        run: |
+          docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          docker inspect ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+      
+      # ====================================================================
+      # Step 7: Notify on Success
+      # ====================================================================
+      - name: Notify success
+        if: success()
+        run: |
+          echo "✅ Docker image published successfully!"
+          echo "Image: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}"
+          echo "Latest: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
+      
+      # ====================================================================
+      # Step 8: Notify on Failure
+      # ====================================================================
+      - name: Notify failure
+        if: failure()
+        run: |
+          echo "❌ Docker image build failed!"
+          exit 1

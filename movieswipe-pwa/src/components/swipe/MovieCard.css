@@ -1,0 +1,113 @@
+.movie-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: fit-content;
+  margin: 0 auto;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  user-select: none;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+}
+
+.movie-card:active {
+  transform: scale(0.98);
+}
+
+.movie-card-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background-color: var(--color-bg-tertiary);
+}
+
+.movie-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.movie-card-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: white;
+  backdrop-filter: blur(4px);
+}
+
+.movie-card-info {
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.movie-card-title {
+  margin: 0 auto var(--spacing-xs) auto;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.movie-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.movie-card-separator {
+  color: var(--color-text-tertiary);
+}
+
+.movie-card-year,
+.movie-card-genre {
+  font-weight: 500;
+}
+
+/* Mobile optimization */
+@media (max-width: 767px) {
+  .movie-card {
+    max-width: 100%;
+  }
+  
+  .movie-card-title {
+    font-size: var(--font-size-md);
+  }
+  
+  .movie-card-info {
+    padding: var(--spacing-sm);
+  }
+}

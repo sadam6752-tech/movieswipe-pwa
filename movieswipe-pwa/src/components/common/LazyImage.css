@@ -1,0 +1,26 @@
+.lazy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  background-color: var(--color-bg-tertiary);
+}
+
+.lazy-image--loaded {
+  opacity: 1;
+}
+
+/* Placeholder animation while loading */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.lazy-image:not(.lazy-image--loaded) {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

@@ -1,0 +1,91 @@
+.swipe-interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.swipe-interface-stack {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 2/3;
+  margin: 0 auto var(--spacing-md) auto;
+  touch-action: pan-y;
+}
+
+.swipe-interface-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  min-height: 400px;
+}
+
+.swipe-interface-empty h2 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.swipe-interface-empty p {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+.swipe-interface-reset {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: none;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-accent-primary);
+  color: white;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.swipe-interface-reset:hover {
+  background-color: #ff8585;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.swipe-interface-reset:active {
+  transform: translateY(0);
+}
+
+.swipe-interface-counter {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* Mobile optimization */
+@media (max-width: 767px) {
+  .swipe-interface {
+    padding: var(--spacing-sm);
+  }
+  
+  .swipe-interface-stack {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* Tablet and desktop */
+@media (min-width: 768px) {
+  .swipe-interface {
+    max-width: 600px;
+  }
+}

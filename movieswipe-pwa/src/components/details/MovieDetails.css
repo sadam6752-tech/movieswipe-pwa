@@ -1,0 +1,207 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--color-bg-primary);
+  padding-bottom: 80px;
+}
+
+.movie-details-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.movie-details-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #1a1c24;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.movie-details-loading-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--border-radius-sm);
+  color: #3b82f6;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.movie-details-back:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-primary);
+}
+
+.movie-details-back:active {
+  transform: scale(0.98);
+}
+
+.movie-details-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.movie-details-actions {
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(
+    to top,
+    var(--color-bg-primary) 0%,
+    var(--color-bg-primary) 80%,
+    transparent 100%
+  );
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.movie-details-back-button {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #1a1c24;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.movie-details-back-button:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-primary);
+}
+
+.movie-details-back-button:active {
+  transform: scale(0.98);
+}
+
+.movie-details-favorite-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #1a1c24;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.movie-details-favorite-button:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.movie-details-favorite-button:active {
+  transform: translateY(0);
+}
+
+.movie-details-favorite-button.active {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.5);
+  color: #ef4444;
+}
+
+.movie-details-favorite-button.active:hover {
+  background: rgba(220, 38, 38, 0.25);
+  border-color: rgba(220, 38, 38, 0.7);
+}
+
+.movie-details-favorite-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.movie-details-favorite-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.movie-details-favorite-text {
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .movie-details-header {
+    padding: 0.75rem;
+  }
+
+  .movie-details-back {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .movie-details-actions {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .movie-details-back-button {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .movie-details-favorite-button {
+    padding: 0.875rem;
+    font-size: 0.9375rem;
+  }
+
+  .movie-details-favorite-icon {
+    font-size: 1.25rem;
+  }
+  
+  .movie-details-favorite-text {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-details-actions {
+    max-width: 1200px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

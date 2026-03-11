@@ -1,0 +1,260 @@
+.data-source-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+}
+
+.data-source-manager-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.data-source-manager-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.data-source-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.data-source-checkbox:hover {
+  border-color: var(--color-primary);
+}
+
+.data-source-checkbox input[type="checkbox"] {
+  margin-top: 0.125rem;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.data-source-checkbox input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.data-source-checkbox-label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.data-source-checkbox-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.data-source-checkbox-description {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.data-source-manager-sync {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.data-source-manager-sync-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.data-source-manager-sync-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.data-source-manager-sync-label {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.data-source-manager-sync-time,
+.data-source-manager-sync-count {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.data-source-manager-sync-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.data-source-manager-sync-button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.data-source-manager-sync-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.data-source-manager-sync-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.data-source-manager-error {
+  padding: 0.875rem 1rem;
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--border-radius-sm);
+  color: #ef4444;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 767px) {
+  .data-source-manager {
+    padding: 1rem;
+  }
+}
+
+/* API Key Input */
+.data-source-manager-api-key {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.data-source-manager-api-key-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.data-source-manager-api-key-link {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.data-source-manager-api-key-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.data-source-manager-api-key-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.data-source-manager-api-key-input {
+  flex: 1;
+  padding: 0.625rem 0.875rem;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-family: 'Courier New', monospace;
+  transition: border-color 0.2s ease;
+}
+
+.data-source-manager-api-key-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.data-source-manager-api-key-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.data-source-manager-api-key-save {
+  padding: 0.625rem 1.25rem;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.data-source-manager-api-key-save:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.data-source-manager-api-key-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Progress Bar */
+.data-source-manager-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.data-source-manager-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--color-bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.data-source-manager-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.data-source-manager-progress-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
