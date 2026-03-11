@@ -58,12 +58,13 @@ RUN chown -R appuser:appuser /usr/share/nginx/html && \
     touch /var/run/nginx.pid && \
     chown -R appuser:appuser /var/run/nginx.pid
 
+# Copy entrypoint script and set permissions (before switching user)
+COPY docker/movieswipe-pwa/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    chown appuser:appuser /entrypoint.sh
+
 # Switch to non-root user
 USER appuser
-
-# Copy entrypoint script
-COPY docker/movieswipe-pwa/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 # Expose port 3000
 # Note: Nginx will listen on this port as configured in nginx.conf
