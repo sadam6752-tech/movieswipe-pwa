@@ -33,8 +33,8 @@ RUN npm run build
 
 FROM nginx:alpine
 
-# Install bash and utilities for interactive shell access
-RUN apk add --no-cache bash curl wget
+# Install bash, Node.js and utilities for interactive shell access
+RUN apk add --no-cache bash curl wget nodejs npm
 
 # Set working directory
 WORKDIR /usr/share/nginx/html
