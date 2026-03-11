@@ -66,6 +66,48 @@ services:
     labels:
       - "com.movieswipe.description=MovieSwipe PWA Application"
       - "com.movieswipe.version=1.0.0"
+    
+    # Volumes for data persistence
+    volumes:
+      - ./../../movieswipe-pwa/public/data:/usr/share/nginx/html/data
+
+  # ========================================================================
+  # movieswipe-sync Service (Data Synchronization)
+  # ========================================================================
+  # This service runs data synchronization scripts to fetch movie data
+  # from TMDB, Poiskkino, and other sources.
+  # Run manually: docker-compose run movieswipe-sync
+  movieswipe-sync:
+    # Build from Dockerfile.sync
+    build:
+      context: .
+      dockerfile: Dockerfile.sync
+    
+    # Container name
+    container_name: movieswipe-sync
+    
+    # Don't start automatically - run manually when needed
+    profiles:
+      - sync
+    
+    # Environment variables for API keys
+    environment:
+      NODE_ENV: production
+      # Add your API keys here or pass via .env file
+      # TMDB_API_KEY: ${TMDB_API_KEY}
+      # POISKKINO_API_KEY: ${POISKKINO_API_KEY}
+    
+    # Volumes for data persistence
+    volumes:
+      - ./../../movieswipe-pwa/public/data:/app/public/data
+    
+    # Restart policy - don't restart automatically
+    restart: "no"
+    
+    # Labels
+    labels:
+      - "com.movieswipe.description=MovieSwipe Data Synchronization"
+      - "com.movieswipe.version=1.0.0"
 
 # ============================================================================
 # Networks

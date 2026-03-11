@@ -2,5 +2,16 @@
 !.github/
 !.github/workflows/
 !docker/
+!docker/movieswipe-pwa/
+!docker/movieswipe-pwa/Dockerfile
+!docker/movieswipe-pwa/Dockerfile.sync
+!docker/movieswipe-pwa/nginx.conf
+!docker/movieswipe-pwa/docker-compose.yml
+!docker/movieswipe-pwa/.env.example
+!docker/movieswipe-pwa/SYNC_GUIDE.md
+!docker/movieswipe-pwa/scripts/
+!docker/movieswipe-pwa/scripts/build.sh
+!docker/movieswipe-pwa/scripts/test.sh
+!docker/movieswipe-pwa/scripts/push.sh
 !movieswipe-pwa/
 !.gitignore

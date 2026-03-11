@@ -1,0 +1,32 @@
+# ============================================================================
+# Dockerfile for MovieSwipe PWA - Data Synchronization
+# ============================================================================
+# This Dockerfile creates an image for running data synchronization scripts
+# (TMDB, Poiskkino, etc.) to fetch and update movie data.
+# ============================================================================
+
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY movieswipe-pwa/package*.json ./
+
+# Install dependencies
+RUN npm ci --legacy-peer-deps
+
+# Copy scripts
+COPY movieswipe-pwa/scripts ./scripts
+
+# Copy data directory (for output)
+COPY movieswipe-pwa/public/data ./public/data
+
+# Create data directory if it doesn't exist
+RUN mkdir -p ./public/data
+
+# Set environment variables (can be overridden at runtime)
+ENV NODE_ENV=production
+
+# Default command - run Poiskkino sync
+CMD ["node", "scripts/poiskkino-sync.cjs"]
