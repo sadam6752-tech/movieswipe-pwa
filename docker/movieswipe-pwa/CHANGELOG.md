@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2026-03-11
+
+### Changed
+- Simplified to single image (removed separate sync image)
+- Added bash shell support to main image
+- Integrated entrypoint script for flexible execution
+
+### Added
+- Bash, curl, wget utilities in main image
+- Support for interactive terminal in Synology Docker
+- Ability to run custom commands while maintaining nginx default
+
+### Fixed
+- Removed complexity of dual images
+- Proper entrypoint handling for both nginx and shell access
+
+---
+
 ## [1.0.4] - 2026-03-11
 
 ### Added

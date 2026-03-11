@@ -33,6 +33,9 @@ RUN npm run build
 
 FROM nginx:alpine
 
+# Install bash and utilities for interactive shell access
+RUN apk add --no-cache bash curl wget
+
 # Set working directory
 WORKDIR /usr/share/nginx/html
 
@@ -58,6 +61,10 @@ RUN chown -R appuser:appuser /usr/share/nginx/html && \
 # Switch to non-root user
 USER appuser
 
+# Copy entrypoint script
+COPY docker/movieswipe-pwa/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port 3000
 # Note: Nginx will listen on this port as configured in nginx.conf
 EXPOSE 3000
@@ -66,6 +73,9 @@ EXPOSE 3000
 # Verifies that the web server is responding to HTTP requests
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=10s \
   CMD wget --quiet --tries=1 --spider http://localhost:3000/ || exit 1
+
+# Use entrypoint script for flexible execution
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Start nginx in foreground mode
 # This keeps the container running and allows Docker to manage the process
