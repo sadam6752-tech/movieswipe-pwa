@@ -67,8 +67,11 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          # Build context
-          context: ./docker/movieswipe-pwa
+          # Build context - root of repository
+          context: .
+          
+          # Dockerfile path
+          file: ./docker/movieswipe-pwa/Dockerfile
           
           # Target platforms (architectures)
           platforms: linux/amd64,linux/arm64
